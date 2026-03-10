@@ -1,0 +1,14 @@
+.app-container {
+  background-color: black;
+  min-height: 100vh;
+}
+
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 200px;
+}
