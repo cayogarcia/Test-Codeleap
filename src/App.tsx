@@ -18,7 +18,7 @@ function App() {
       </header>
 
       {!username && (
-        <RegisterModal onRegister={setUsername} />
+        <RegisterModal onEnter={setUsername} />
       )}
 
       {username && (

@@ -8,6 +8,8 @@ export function usePosts() {
     queryFn: async () => {
       const { data } = await api.get("/careers/");
       return data.results ?? [];
-    }
+    },
+
+    refetchInterval: 5000,
   });
 }

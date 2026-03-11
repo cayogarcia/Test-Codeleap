@@ -2,39 +2,59 @@ import { useState } from "react"
 import styled from "styled-components"
 
 interface Props {
-  onRegister: (username: string) => void
+  onEnter: (username: string) => void
 }
 
-export default function RegisterModal({ onRegister }: Props) {
+export default function RegisterModal({ onEnter }: Props) {
 
   const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
-  function handleRegister() {
+  function handleEnter() {
 
-    if (!username) return
+    if (!username || !password) return
+
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long.")
+      return
+    }
 
     localStorage.setItem("username", username)
+    localStorage.setItem("password", password)
 
-    onRegister(username)
+    onEnter(username)
   }
 
   return (
+
     <Overlay>
 
       <Modal>
 
-        <Title>Welcome to CodeLeap network!</Title>
+        <Title>
+          Welcome to CodeLeap Network!
+        </Title>
 
-        <Label>Please enter your username</Label>
+        <Label>Username</Label>
 
         <Input
+          placeholder="Enter your username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
 
+        <Label>Password</Label>
+
+        <Input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
         <Button
-          disabled={!username}
-          onClick={handleRegister}
+          disabled={!username || !password}
+          onClick={handleEnter}
         >
           ENTER
         </Button>
@@ -46,32 +66,32 @@ export default function RegisterModal({ onRegister }: Props) {
 }
 
 const Overlay = styled.div`
-  position: fixed;
+  position:fixed;
   top:0;
   left:0;
-  width:100%;
-  height:100%;
+  right:0;
+  bottom:0;
+
+  background:rgba(0,0,0,0.6);
 
   display:flex;
   justify-content:center;
   align-items:center;
-
-  background: rgba(0,0,0,0.4);
 `
 
 const Modal = styled.div`
   background:white;
   padding:30px;
   border-radius:8px;
-  width:420px;
+  width:400px;
 
   display:flex;
   flex-direction:column;
-  gap:15px;
+  gap:10px;
 `
 
 const Title = styled.h2`
-  margin:0;
+  margin:0 0 10px 0;
 `
 
 const Label = styled.label`
@@ -86,6 +106,8 @@ const Input = styled.input`
 
 const Button = styled.button`
   align-self:flex-end;
+  margin-top:10px;
+
   padding:10px 20px;
 
   border:none;
@@ -93,8 +115,8 @@ const Button = styled.button`
 
   background:#7695EC;
   color:white;
-  font-weight:bold;
 
+  font-weight:bold;
   cursor:pointer;
 
   &:disabled{
