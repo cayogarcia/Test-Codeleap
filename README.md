@@ -7,7 +7,7 @@
 
 Frontend application developed as part of the **CodeLeap Frontend Technical Challenge**.
 
-The application allows users to create, edit, delete and view posts from the CodeLeap API.
+The application allows users to create, edit, delete, like and reply to posts using the CodeLeap API.
 
 ---
 
@@ -29,6 +29,14 @@ Users can create new posts by entering a title and content.
 
 Users can edit or delete their own posts.
 
+## Likes
+
+Users can like posts. Likes are stored locally using **LocalStorage**.
+
+## Replies
+
+Users can reply to posts. Replies appear below the original post with the replying user's avatar and username.
+
 ---
 
 # Technologies
@@ -40,7 +48,8 @@ This project was built using:
 * Vite
 * Axios
 * React Query
-* CSS
+* Styled Components
+* LocalStorage
 
 ---
 
@@ -50,6 +59,7 @@ The application consumes the public API:
 
 https://dev.codeleap.co.uk/careers/
 
+---
 
 # Project Structure
 
@@ -59,7 +69,8 @@ src
  │   ├── CreatePost
  │   ├── PostCard
  │   ├── EditModal
- │   └── DeleteModal
+ │   ├── DeleteModal
+ │   └── CommentSection
  │
  ├── hooks
  │   └── usePosts.ts
@@ -68,11 +79,11 @@ src
  │   └── api.ts
  │
  ├── types
+ │   └── Comment.ts
  │   └── Post.ts
- │
+ |
  ├── pages
- │   ├── Login
- │   └── Home
+ │   └── index.tsx
  │
  ├── App.tsx
  └── main.tsx
@@ -91,7 +102,7 @@ git clone https://github.com/your-user/codeleap-test.git
 Enter the project folder
 
 ```bash
-cd codeleap
+cd codeleap-test
 ```
 
 Install dependencies
@@ -120,7 +131,10 @@ http://localhost:5173
 * Create posts
 * Edit posts
 * Delete posts
-* Posts list
+* Posts feed
+* Like system ❤️
+* Reply system 💬
+* Avatar generated from username
 * Modal confirmation
 * LocalStorage for user persistence
 * API integration
@@ -138,7 +152,7 @@ Example:
 /screenshots/login.png
 /screenshots/feed.png
 /screenshots/create-post.png
-/screenshots/edit-post.png
+/screenshots/replies.png
 ```
 
 ---
@@ -147,6 +161,8 @@ Example:
 
 * Pagination support
 * Responsive mobile layout
+* Backend persistence for likes and replies
+* Real-time updates
 * Better error handling
 * Loading states
 
@@ -157,7 +173,3 @@ Example:
 Developed by **Cayo Garcia**
 
 ---
-
-# License
-
-This project was developed for study and technical evaluation purposes.
