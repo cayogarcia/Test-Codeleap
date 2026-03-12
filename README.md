@@ -96,13 +96,13 @@ src
 Clone the repository
 
 ```bash
-git clone https://github.com/your-user/codeleap-test.git
+git clone https://github.com/your-user/codeleap.git
 ```
 
 Enter the project folder
 
 ```bash
-cd codeleap-test
+cd codeleap
 ```
 
 Install dependencies
